@@ -61,3 +61,6 @@ If route 3005 returned at the same rate as the best route in its depot (6.54%) i
 3. Create the table with `sql/01_schema.sql`.
 4. Set the environment variable `MYSQL_PWD`, then run `python/load_mysql.py`.
 5. Run `sql/02_diagnostics.sql`.
+
+## MADE BY: AARAV GUPTA, BTECH/11087/24
+BRANCH: PRODUCTION & INDUSTRIAL ENGINEERING
