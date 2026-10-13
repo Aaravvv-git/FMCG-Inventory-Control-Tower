@@ -4,13 +4,19 @@ USE fmcg_tower;
 SELECT COUNT(*) AS total_rows FROM stg_sales;
 
 -- 2. Weekly return rate
-SELECT Semana, COUNT(*) AS row_count, SUM(Venta_uni_hoy) AS units_sold,
+SELECT Semana, 
+       COUNT(*) AS row_count, 
+       SUM(Venta_uni_hoy) AS units_sold,
        SUM(Dev_uni_proxima) AS units_returned,
        ROUND(100 * SUM(Dev_uni_proxima) / SUM(Venta_uni_hoy), 2) AS return_rate_pct
-FROM stg_sales GROUP BY Semana ORDER BY Semana;
+FROM stg_sales 
+GROUP BY Semana 
+ORDER BY Semana;
 
 -- 3. Top products by return value
-SELECT Producto_ID, SUM(Venta_uni_hoy) AS units_sold, SUM(Dev_uni_proxima) AS units_returned,
+SELECT Producto_ID, 
+       SUM(Venta_uni_hoy) AS units_sold, 
+       SUM(Dev_uni_proxima) AS units_returned,
        ROUND(100 * SUM(Dev_uni_proxima) / SUM(Venta_uni_hoy), 2) AS return_rate_pct,
        ROUND(SUM(Dev_proxima), 0) AS return_value
 FROM stg_sales GROUP BY Producto_ID
@@ -18,7 +24,8 @@ HAVING SUM(Venta_uni_hoy) >= 5000
 ORDER BY return_value DESC LIMIT 20;
 
 -- 4. Top depots by return value
-SELECT Agencia_ID, SUM(Venta_uni_hoy) AS units_sold, SUM(Dev_uni_proxima) AS units_returned,
+SELECT Agencia_ID, SUM(Venta_uni_hoy) AS units_sold, 
+       SUM(Dev_uni_proxima) AS units_returned,
        ROUND(100 * SUM(Dev_uni_proxima) / SUM(Venta_uni_hoy), 2) AS return_rate_pct,
        ROUND(SUM(Dev_proxima), 0) AS return_value
 FROM stg_sales GROUP BY Agencia_ID
@@ -38,28 +45,39 @@ SELECT ROUND(100 * MIN(CASE WHEN cum / tot >= 0.8 THEN rn END) / MAX(n), 1)
 FROM r;
 
 -- 6. Drill-down: depot 1980 by route
-SELECT Ruta_SAK, COUNT(DISTINCT Cliente_ID) AS clients, SUM(Venta_uni_hoy) AS units_sold,
+SELECT Ruta_SAK, COUNT(DISTINCT Cliente_ID) AS clients, 
+       SUM(Venta_uni_hoy) AS units_sold,
        SUM(Dev_uni_proxima) AS units_returned,
        ROUND(100 * SUM(Dev_uni_proxima) / SUM(Venta_uni_hoy), 2) AS return_rate_pct,
        ROUND(SUM(Dev_proxima), 0) AS return_value
 FROM stg_sales WHERE Agencia_ID = 1980
-GROUP BY Ruta_SAK ORDER BY return_value DESC;
+GROUP BY Ruta_SAK 
+ORDER BY return_value DESC;
 
 -- 7. Channel comparison, network-wide
-SELECT Canal_ID, COUNT(DISTINCT Agencia_ID) AS depots, SUM(Venta_uni_hoy) AS units_sold,
+SELECT Canal_ID, COUNT(DISTINCT Agencia_ID) AS depots, 
+       SUM(Venta_uni_hoy) AS units_sold,
        SUM(Dev_uni_proxima) AS units_returned,
        ROUND(100 * SUM(Dev_uni_proxima) / SUM(Venta_uni_hoy), 2) AS return_rate_pct
-FROM stg_sales GROUP BY Canal_ID ORDER BY units_sold DESC;
+FROM stg_sales 
+GROUP BY Canal_ID 
+ORDER BY units_sold DESC;
 
 -- 8. Route 3005 weekly pattern
-SELECT Semana, Cliente_ID, SUM(Venta_uni_hoy) AS units_sold, SUM(Dev_uni_proxima) AS units_returned,
+SELECT Semana, 
+       Cliente_ID, 
+       SUM(Venta_uni_hoy) AS units_sold, 
+       SUM(Dev_uni_proxima) AS units_returned,
        ROUND(100 * SUM(Dev_uni_proxima) / SUM(Venta_uni_hoy), 2) AS return_rate_pct
 FROM stg_sales WHERE Agencia_ID = 1980 AND Ruta_SAK = 3005
-GROUP BY Semana, Cliente_ID ORDER BY Semana;
+GROUP BY Semana, Cliente_ID 
+ORDER BY Semana;
 
 -- 9. Route 3005 top products by return value
-SELECT Producto_ID, SUM(Venta_uni_hoy) AS units_sold, SUM(Dev_uni_proxima) AS units_returned,
+SELECT Producto_ID, SUM(Venta_uni_hoy) AS units_sold, 
+       SUM(Dev_uni_proxima) AS units_returned,
        ROUND(100 * SUM(Dev_uni_proxima) / SUM(Venta_uni_hoy), 2) AS return_rate_pct,
        ROUND(SUM(Dev_proxima), 0) AS return_value
 FROM stg_sales WHERE Agencia_ID = 1980 AND Ruta_SAK = 3005
-GROUP BY Producto_ID ORDER BY return_value DESC LIMIT 10;
+GROUP BY Producto_ID 
+ORDER BY return_value DESC LIMIT 10;
