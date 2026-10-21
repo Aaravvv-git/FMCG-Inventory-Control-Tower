@@ -1,7 +1,6 @@
 CREATE DATABASE IF NOT EXISTS fmcg_tower;
 USE fmcg_tower;
 
-DROP TABLE IF EXISTS stg_sales;
 CREATE TABLE stg_sales (
   Semana TINYINT,
   Agencia_ID SMALLINT,
