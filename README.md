@@ -27,7 +27,8 @@ The raw data is not in this repo (size and Kaggle terms). See "How to reproduce"
 6. **That ID over-indexes on returns, and its name is a flag.** Client 653378 is labelled "PUEBLA REMISION" in the client lookup ("remision" is Spanish for a delivery or consignment note), which reads like a recording bucket and not a named store; the dataset gives no definition. It spans 12 routes in 2 depots (1980 and 1560): 6.90% of units returned vs 1.50% network average, return value 277,873, 1.6% of all units but 7.6% of all returned units. Route 3005 within it returns 15.91%, with a weekly return rate swinging from 7.8% to 27.9% while sales stay steady.
 
 **What did not work (two backtests)** 
-7. *Replacing replenishment with a 4-week forecast + safety stock* (`python/policy_simulation.py`) on 8,182 depot-SKU-weeks: simulated returns were about 9x to 28x actual returns across service levels of 50% to 98%. 
+
+7.*Replacing replenishment with a 4-week forecast + safety stock* (`python/policy_simulation.py`) on 8,182 depot-SKU-weeks: simulated returns were about 9x to 28x actual returns across service levels of 50% to 98%. 
 Actual returns are only 1.5% of delivered units, so the existing process is much more accurate than a moving average. Fill rate is measured against recorded demand, which can never exceed deliveries, so it is optimistic.
 
 8. *Capping deliveries only where the trailing 3-week return rate is high* (`python/exception_backtest.py`): the flag is informative (3% trigger: 22% of rows hold 37% of returns), but cutting stock loses 3.7 to 5.9 sales for every return avoided. Net value is negative at 50% and 70% cost of goods, and positive only at 85%.
