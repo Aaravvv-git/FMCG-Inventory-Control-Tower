@@ -4,7 +4,7 @@
 ![Overview](images/01_overview.png)
 ![Segments](images/02_segments.png)
 ![Exceptions](images/03_exceptions.png)
-![Concentration](images/04_concentrations.png)
+![Concentrations](images/04_concentrations.png)
 
 Tools: MySQL, Python (pandas, SQLAlchemy), Power BI, Excel (planned)
 
