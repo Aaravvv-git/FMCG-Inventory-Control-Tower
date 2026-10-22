@@ -1,5 +1,11 @@
 # FMCG Supply Chain Analytics & Inventory Control Tower
 
+## Dashboard
+![Overview](images/01_overview.png)
+![Segments](images/02_segments.png)
+![Exceptions](images/03_exceptions.png)
+![Concentration](images/04_concentration.png)
+
 Tools: MySQL, Python (pandas, SQLAlchemy), Power BI, Excel (planned)
 
 ## Business question
