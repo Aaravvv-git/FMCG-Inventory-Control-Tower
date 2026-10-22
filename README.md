@@ -8,6 +8,9 @@
 
 Tools: MySQL, Python (pandas, SQLAlchemy), Power BI, Excel (planned)
 
+## Deck 
+[Findings deck (PDF)](docs/findings_deck.pdf)
+
 ## Business question
 Where does an FMCG distributor lose money to returned (unsold) product, and what should a planner review this week?
 
