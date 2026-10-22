@@ -26,7 +26,7 @@ The raw data is not in this repo (size and Kaggle terms). See "How to reproduce"
 5. **Channel 5 is one client ID.** Client 653378 is 491,746 of channel 5's 493,681 units (99.6%) and 33,928 of its 35,926 returned units (94%). Without it, channel 5 has 1,935 units sold, too few to read. So the apparent channel effect (7.28% vs 1.43% for channel 1) is a single-ID effect.
 6. **That ID over-indexes on returns, and its name is a flag.** Client 653378 is labelled "PUEBLA REMISION" in the client lookup ("remision" is Spanish for a delivery or consignment note), which reads like a recording bucket and not a named store; the dataset gives no definition. It spans 12 routes in 2 depots (1980 and 1560): 6.90% of units returned vs 1.50% network average, return value 277,873, 1.6% of all units but 7.6% of all returned units. Route 3005 within it returns 15.91%, with a weekly return rate swinging from 7.8% to 27.9% while sales stay steady.
 
-**What did not work (two backtests)**
+**What did not work (two backtests)** 
 7. *Replacing replenishment with a 4-week forecast + safety stock* (`python/policy_simulation.py`) on 8,182 depot-SKU-weeks: simulated returns were about 9x to 28x actual returns across service levels of 50% to 98%. 
 Actual returns are only 1.5% of delivered units, so the existing process is much more accurate than a moving average. Fill rate is measured against recorded demand, which can never exceed deliveries, so it is optimistic.
 
