@@ -6,7 +6,7 @@
 ![Exceptions](images/03_exceptions.png)
 ![Concentrations](images/04_concentrations.png)
 
-Tools: MySQL, Python (pandas, SQLAlchemy), Power BI, Excel (planned)
+Tools: MySQL, Python (pandas, SQLAlchemy), Power BI
 
 ## Deck 
 [Findings deck (PDF)](docs/fmcg_project.pdf)
@@ -37,7 +37,7 @@ The raw data is not in this repo (size and Kaggle terms). See "How to reproduce"
 
 **What did not work (two backtests)** 
 
-7.*Replacing replenishment with a 4-week forecast + safety stock* (`python/policy_simulation.py`) on 8,182 depot-SKU-weeks: simulated returns were about 9x to 28x actual returns across service levels of 50% to 98%. 
+7. *Replacing replenishment with a 4-week forecast + safety stock* (`python/policy_simulation.py`) on 8,182 depot-SKU-weeks: simulated returns were about 9x to 28x actual returns across service levels of 50% to 98%. 
 Actual returns are only 1.5% of delivered units, so the existing process is much more accurate than a moving average. Fill rate is measured against recorded demand, which can never exceed deliveries, so it is optimistic.
 
 8. *Capping deliveries only where the trailing 3-week return rate is high* (`python/exception_backtest.py`): the flag is informative (3% trigger: 22% of rows hold 37% of returns), but cutting stock loses 3.7 to 5.9 sales for every return avoided. Net value is negative at 50% and 70% cost of goods, and positive only at 85%.
