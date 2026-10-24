@@ -1,5 +1,7 @@
 # FMCG Supply Chain Analytics & Inventory Control Tower
 
+**[Open the interactive dashboard](https://aaravvv-git.github.io/FMCG-Inventory-Control-Tower/)**
+
 ## Dashboard
 ![Overview](images/01_overview.png)
 ![Segments](images/02_segments.png)
